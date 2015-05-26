@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed s:'@PREFIX@':"$PREFIX":g -i src/fccfg.c
+sed -e s:'@PREFIX@':"$PREFIX":g -i .bak src/fccfg.c
 
 chmod +x configure
 ./configure --prefix $PREFIX --enable-libxml2 --disable-docs
