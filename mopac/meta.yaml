@@ -1,0 +1,28 @@
+package:
+  name: mopac
+  version: 2012
+
+source:
+  fn: MOPAC2012_for_Macintosh.zip # [osx]
+  url: http://openmopac.net/MOPAC2012_for_Macintosh.zip # [osx]
+  md5: 2bd2f292f08f05a4ef9f9f9a45bc0df4 # [osx]
+  
+  # Not yet tested this, but it seems most anaconda stuff 
+  # is built on CentOS 5 so that it uses an old glibc and is 
+  # hopefully forward-compatible with newer versions.
+  fn: MOPAC2012_for_CentOS-5.zip # [linux]
+  url: http://openmopac.net/MOPAC2012_for_CentOS-5.zip # [linux]
+  md5: ebfca7bac904b04b59f25fdb76d4bcee # [linux]
+  
+  
+build:
+  number: 1
+  binary_relocation: false
+
+test:
+  commands:
+    - mopac
+
+about:
+  home: http://openmopac.net
+  license: executables are available FREE for academic, not-for-profit use
