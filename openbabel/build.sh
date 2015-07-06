@@ -1,11 +1,21 @@
+#!/bin/bash
+if [ `uname` == Darwin ]; then
+    SO_EXT='dylib'
+else
+    SO_EXT='so'
+fi
 
 cmake -DCMAKE_INSTALL_PREFIX=$PREFIX \
--DPYTHON_LIBRARY=$PREFIX/lib/libpython$PY_VER.dylib \
--DPYTHON_EXECUTABLE=$PYTHON \
--DPYTHON_INCLUDE_DIR=$PREFIX/include/python${PY_VER}
+      -DPYTHON_LIBRARY=$PREFIX/lib/libpython${PY_VER}.${SO_EXT} \
+      -DPYTHON_EXECUTABLE=$PYTHON \
+      -DPYTHON_INCLUDE_DIR=$PREFIX/include/python${PY_VER} \
+      -DPYTHON_BINDINGS=ON \
+      -DRUN_SWIG=ON
+
+# false # pause here to see what's going on
 
 #put libxml, eigen, wxwidgets, 
-make -j8 
+make -j${CPU_COUNT}
 make install
 
 #The python library and shared object do not install into site-packages so
@@ -14,6 +24,9 @@ make install
 
 cd scripts/python
 python setup.py install
+
+#cd $SRC_DIR
+#make test | true
 
 #$PREFIX/lib
 #mv openbabel.py python${PY_VER}/site-packages/openbabel.py
