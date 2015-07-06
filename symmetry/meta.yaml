@@ -1,0 +1,12 @@
+package:
+  name: symmetry
+  version: "1.0.1"
+
+source:
+  git_url: https://github.com/connie/symmetry.git
+
+about:
+  home: https://github.com/connie/symmetry
+  license: MIT
+  summary: 'A program for calculating symmetry numbers of molecules'
+
